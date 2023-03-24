@@ -37,7 +37,8 @@ class UpdateProjectRequest extends FormRequest
                 'required',
                 Rule::in(['completed', 'active', 'on_hold', 'cancelled'])
             ],
-            'image' => 'nullable|image|max:2048'
+            'image' => 'nullable|image|max:2048',
+            'type_id' => 'nullable|exists:types,id'
         ];
     }
 }

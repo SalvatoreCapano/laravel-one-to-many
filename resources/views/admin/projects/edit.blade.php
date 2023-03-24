@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('pageTitle')
-    Modifica {{ $project->title }} | Portfolio    
+    Modifica {{ $project->title }} | Portfolio
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 </h1>
             </div>
         </div>
-        
+
         @include('partials.success')
 
         @include('partials.errors')
@@ -29,39 +29,46 @@
                         <label for="title" class="form-label">
                             Titolo<span class="text-danger">*</span>
                         </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="title"
-                            name="title"
-                            required
-                            maxlength="64"
-                            value="{{ old('title', $project->title) }}"
-                            placeholder="Inserisci il titolo...">
+                        <input type="text" class="form-control" id="title" name="title" required maxlength="64"
+                            value="{{ old('title', $project->title) }}" placeholder="Inserisci il titolo...">
                     </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">
-                            Contenuto<span class="text-danger">*</span>
+                            Descrizione<span class="text-danger">*</span>
                         </label>
-                        <textarea
-                            class="form-control"
-                            rows="10"
-                            id="description"
-                            name="description"
-                            required
-                            maxlength="4096"
+                        <textarea class="form-control" rows="10" id="description" name="description" required maxlength="4096"
                             placeholder="Inserisci il contenuto...">{{ old('description', $project->description) }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="type_id" class="form-label">
+                            Tipo
+                        </label>
+                        <select name="type_id" id="type_id" class="form-select">
+                            <option value="">Nessuna categoria</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}"
+                                    {{ old('type_id', $project->type_id) == $type->id ? 'selected' : '' }}>
+                                    {{ $type->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Stato</label>
                         <select class="form-select" name="status" id="status" required>
                             <option {{ !isset($project->status) ? 'selected' : '' }}>-- Seleziona uno stato --</option>
-                            <option value="completed" {{ old('status', $project->status) == 'completed' ? 'selected' : '' }}>{{ __('page.completed') }}</option>
-                            <option value="active" {{ old('status', $project->status) == 'active' ? 'selected' : '' }}>{{ __('page.active') }}</option>
-                            <option value="on_hold" {{ old('status', $project->status) == 'on_hold' ? 'selected' : '' }}>{{ __('page.on_hold') }}</option>
-                            <option value="cancelled" {{ old('status', $project->status) == 'cancelled' ? 'selected' : '' }}>{{ __('page.cancelled') }}</option>
+                            <option value="completed"
+                                {{ old('status', $project->status) == 'completed' ? 'selected' : '' }}>
+                                {{ __('page.completed') }}</option>
+                            <option value="active" {{ old('status', $project->status) == 'active' ? 'selected' : '' }}>
+                                {{ __('page.active') }}</option>
+                            <option value="on_hold" {{ old('status', $project->status) == 'on_hold' ? 'selected' : '' }}>
+                                {{ __('page.on_hold') }}</option>
+                            <option value="cancelled"
+                                {{ old('status', $project->status) == 'cancelled' ? 'selected' : '' }}>
+                                {{ __('page.cancelled') }}</option>
                         </select>
                     </div>
 
@@ -70,12 +77,7 @@
                             Immagine in evidenza
                         </label>
 
-                        <input
-                            type="file"
-                            class="form-control"
-                            id="image"
-                            name="image"
-                            accept="image/*"
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*"
                             placeholder="Inserisci l'immagine...">
                     </div>
 
