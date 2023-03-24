@@ -1,0 +1,26 @@
+@import "~bootstrap/scss/bootstrap";
+
+.logo {
+    height: 32px;
+    img {
+        height: 100%;
+        display: block;
+        filter: invert(100%);
+    }
+}
+
+main {
+    height: 100vh;
+}
+
+#status:focus {
+    option:first-child {
+        display: none;
+    }
+}
+
+.imgContainer {
+    img {
+        height: 200px;
+    }
+}
