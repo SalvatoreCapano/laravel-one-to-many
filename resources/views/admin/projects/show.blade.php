@@ -24,6 +24,12 @@
                                 @endif
                             </div>
                         </div>
+                        <h5 class="card-title">Tipo</h5>
+                        @if ($project->type)
+                            <p class="card-text">{{ $project->type->name }}</p>
+                        @else
+                            <p>Nessun tipo impostato</p>
+                        @endif
                         <h5 class="card-title">{{ __('page.description') }}</h5>
                         <p class="card-text">{{ $project->description }}</p>
                         <p>
