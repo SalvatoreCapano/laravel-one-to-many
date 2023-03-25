@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::prefix('admin')
-//     ->name('admin.')
-//     ->middleware(['auth', 'verified'])
-//     ->group(function () {
-//         Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-//     });
 Route::prefix('admin')
         ->name('admin.')
         ->middleware(['auth', 'verified'])
@@ -36,6 +31,7 @@ Route::prefix('admin')
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('projects', ProjectController::class);
+    Route::resource('types', TypeController::class);
 });
 
 Route::middleware('auth')
@@ -47,15 +43,5 @@ Route::middleware('auth')
         Route::patch('/', 'update')->name('update');
         Route::delete('/', 'destroy')->name('destroy');
     });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__ . '/auth.php';
